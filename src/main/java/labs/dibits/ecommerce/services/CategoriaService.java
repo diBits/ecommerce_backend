@@ -1,10 +1,12 @@
 package labs.dibits.ecommerce.services;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 
 import labs.dibits.ecommerce.domain.Categoria;
 import labs.dibits.ecommerce.repositories.CategoriaRepository;
+import labs.dibits.ecommerce.services.exceptions.DataIntegrityException;
 import labs.dibits.ecommerce.services.exceptions.ObjectNotFoundException;
 
 @Service
@@ -35,6 +37,18 @@ public class CategoriaService {
 		// TODO Auto-generated method stub
 		find(obj.getId());
 		return repo.save(obj);
+	}
+
+	public void delete(Integer id) {
+		// TODO Auto-generated method stub
+		find(id);
+		try {
+			repo.deleteById(id);
+		}
+		catch (DataIntegrityViolationException e) {
+			throw new DataIntegrityException("Não e possível excluir uma categoria com produtos");
+		}
+		
 	}
 	
 }
