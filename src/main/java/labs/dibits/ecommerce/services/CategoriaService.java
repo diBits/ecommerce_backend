@@ -11,6 +11,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import labs.dibits.ecommerce.domain.Categoria;
+import labs.dibits.ecommerce.dto.CategoriaDTO;
 import labs.dibits.ecommerce.repositories.CategoriaRepository;
 import labs.dibits.ecommerce.services.exceptions.DataIntegrityException;
 import labs.dibits.ecommerce.services.exceptions.ObjectNotFoundException;
@@ -63,6 +64,11 @@ public class CategoriaService {
 	public Page<Categoria> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
 	    PageRequest pageRequest = PageRequest.of(page, linesPerPage, Sort.Direction.valueOf(direction), orderBy);
 		return repo.findAll(pageRequest);
+	}
+	
+	/** Metodo auxiliar que instancia uma Categoria a partir de um DTO**/
+	public Categoria fromDTO(CategoriaDTO objDto) {
+		return new Categoria(objDto.getId(), objDto.getNome());
 	}
 	
 }
