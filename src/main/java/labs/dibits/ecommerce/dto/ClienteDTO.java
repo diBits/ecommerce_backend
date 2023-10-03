@@ -7,7 +7,10 @@ import org.hibernate.validator.constraints.Length;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import labs.dibits.ecommerce.domain.Cliente;
+import labs.dibits.ecommerce.services.validation.ClienteUpdate;
 
+
+@ClienteUpdate
 public class ClienteDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 

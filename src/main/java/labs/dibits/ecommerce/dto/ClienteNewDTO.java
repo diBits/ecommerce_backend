@@ -2,28 +2,54 @@ package labs.dibits.ecommerce.dto;
 
 import java.io.Serializable;
 
-public class ClienteNewDTO implements Serializable{
+import org.hibernate.validator.constraints.Length;
+
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
+import labs.dibits.ecommerce.services.validation.ClienteInsert;
+
+//anotação personalizada criada na camada de servicos
+@ClienteInsert
+public class ClienteNewDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
+	@NotBlank(message = "Obrigatório")
+	@Length(min = 5, max = 120, message = "Tamanho entre 5 e 120 caracteres")
 	private String nome;
+
+	@NotBlank(message = "Obrigatório")
+	@Email(message = "Email Inválido")
 	private String email;
+
+	@NotBlank(message = "Obrigatório")
 	private String CpfOuCnpj;
+	
 	private Integer tipo;
-	
+
+	@NotBlank(message = "Obrigatório")
 	private String logradouro;
+
+	@NotBlank(message = "Obrigatório")
 	private String numero;
+
 	private String complemento;
+
 	private String bairro;
+
+	@NotBlank(message = "Obrigatório")
 	private String cep;
-	
+
+	@NotBlank(message = "Obrigatório")
 	private String telefone1;
+	
 	private String telefone2;
+	
 	private String telefone3;
-	
+
 	private Integer cidadeId;
-	
+
 	public ClienteNewDTO() {
-		
+
 	}
 
 	public String getNome() {
