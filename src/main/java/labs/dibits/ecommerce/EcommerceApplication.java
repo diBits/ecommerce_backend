@@ -104,11 +104,11 @@ public class EcommerceApplication implements CommandLineRunner {
 		estadoRepository.saveAll(Arrays.asList(e1,e2,e3));
 		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3,c4));
 		
-		Cliente cli1 = new Cliente(null, "Diogo Martins", "dibits.labs@gmail.com", "02208937139", TipoCliente.PESSOAFISICA);
+		Cliente cli1 = new Cliente(null, "Diogo Martins", "dibits.labs@gmail.com", "02102202300", TipoCliente.PESSOAFISICA);
 		cli1.getTelefones().addAll(Arrays.asList("64992768765","34998336599"));
 		
-		Endereco end1 = new Endereco(null, "Alameda dos Jaos", "2", "Qd 2 lt 1", "Fauna II", "75667000", cli1, c4);
-		Endereco end2 = new Endereco(null, "Avenida Brasil", "2115", "Apto 212", "Brasil", "38400718", cli1, c1);
+		Endereco end1 = new Endereco(null, "Alameda dos Brasileiros", "2", "Qd 2 lt 1", "Brasilzinho", "77777000", cli1, c4);
+		Endereco end2 = new Endereco(null, "Avenida Brasil", "2112", "Apto 212", "Brasil", "77777001", cli1, c1);
 		
 		cli1.getEnderecos().addAll(Arrays.asList(end1, end2));
 		
