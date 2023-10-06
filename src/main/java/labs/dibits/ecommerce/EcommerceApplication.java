@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
 import labs.dibits.ecommerce.domain.Categoria;
 import labs.dibits.ecommerce.domain.Cidade;
@@ -32,6 +33,7 @@ import labs.dibits.ecommerce.repositories.PedidoRepository;
 import labs.dibits.ecommerce.repositories.ProdutoRepository;
 
 @SpringBootApplication
+@ComponentScan(basePackages = "labs.dibits.ecommerce")
 public class EcommerceApplication implements CommandLineRunner {
 	
 	@Autowired
@@ -76,6 +78,15 @@ public class EcommerceApplication implements CommandLineRunner {
 		Produto p1 = new Produto(null, "Computador", 2000.00);
 		Produto p2 = new Produto(null, "Impressora", 800.00);
 		Produto p3 = new Produto(null, "Mouse", 80.00);
+		Produto p4 = new Produto(null, "Cartao Playstore", 50.00);
+		Produto p5 = new Produto(null, "Cartao Americanas", 50.00);
+		Produto p6 = new Produto(null, "Cartao Carrefour", 50.00);
+		Produto p7 = new Produto(null, "Pingente", 30.00);
+		Produto p8 = new Produto(null, "Livro How to NFT", 10.00);
+		Produto p9 = new Produto(null, "Livro How to DEFI ", 10.00);
+		Produto p10 = new Produto(null, "Boneco One Piece", 180.00);
+		Produto p11 = new Produto(null, "Abajour Gamer", 100.00);
+		
 		
 		Estado e1 = new Estado(null,"Minas Gerais");
 		Estado e2 = new Estado(null,"São Paulo");
@@ -91,20 +102,33 @@ public class EcommerceApplication implements CommandLineRunner {
 		e3.getCidades().addAll(Arrays.asList(c4));
 		
 		cat1.getProdutos().addAll(Arrays.asList(p1,p2,p3));
-		cat2.getProdutos().addAll(Arrays.asList(p2));
+		cat2.getProdutos().addAll(Arrays.asList(p1,p2, p3));
+		cat3.getProdutos().addAll(Arrays.asList(p10));
+		cat4.getProdutos().addAll(Arrays.asList(p4,p5, p6));
+		cat5.getProdutos().addAll(Arrays.asList(p7,p10, p11));
+		cat6.getProdutos().addAll(Arrays.asList(p8,p9));
+		cat7.getProdutos().addAll(Arrays.asList(p7));
 		
-		p1.getCategorias().addAll(Arrays.asList(cat1));
+		p1.getCategorias().addAll(Arrays.asList(cat1, cat2));
 		p2.getCategorias().addAll(Arrays.asList(cat1,cat2));
-		p3.getCategorias().addAll(Arrays.asList(cat1));
+		p3.getCategorias().addAll(Arrays.asList(cat1, cat2));
+		p4.getCategorias().addAll(Arrays.asList(cat4));
+		p5.getCategorias().addAll(Arrays.asList(cat4));
+		p6.getCategorias().addAll(Arrays.asList(cat4));
+		p7.getCategorias().addAll(Arrays.asList(cat5, cat7));
+		p8.getCategorias().addAll(Arrays.asList(cat6));
+		p9.getCategorias().addAll(Arrays.asList(cat6));
+		p10.getCategorias().addAll(Arrays.asList(cat3, cat5));
+		p11.getCategorias().addAll(Arrays.asList(cat5));
 		
 		
 
 		categoriaRepostory.saveAll(Arrays.asList(cat1, cat2, cat3, cat4, cat5, cat6, cat7));
-		produtoRepository.saveAll(Arrays.asList(p1,p2,p3));
+		produtoRepository.saveAll(Arrays.asList(p1,p2,p3,p4,p5,p6,p7,p8,p9,p10,p11));
 		estadoRepository.saveAll(Arrays.asList(e1,e2,e3));
 		cidadeRepository.saveAll(Arrays.asList(c1,c2,c3,c4));
 		
-		Cliente cli1 = new Cliente(null, "Diogo Martins", "dibits.labs@gmail.com", "02102202300", TipoCliente.PESSOAFISICA);
+		Cliente cli1 = new Cliente(null, "Diogo Martins", "dibits.labs@gmail.com", "80118723030", TipoCliente.PESSOAFISICA);
 		cli1.getTelefones().addAll(Arrays.asList("64992768765","34998336599"));
 		
 		Endereco end1 = new Endereco(null, "Alameda dos Brasileiros", "2", "Qd 2 lt 1", "Brasilzinho", "77777000", cli1, c4);
