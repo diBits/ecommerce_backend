@@ -21,6 +21,8 @@ import com.dibits.ecommerce_backend.repositories.EnderecoRepository;
 import com.dibits.ecommerce_backend.repositories.EstadoRepository;
 import com.dibits.ecommerce_backend.repositories.ProdutoRepository;
 
+
+//ep23finalizado
 @SpringBootApplication
 public class EcommerceBackendApplication implements CommandLineRunner {
 
