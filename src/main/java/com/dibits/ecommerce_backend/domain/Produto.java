@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.Entity;
@@ -20,7 +19,7 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 
 @Entity
-public class Produto implements Serializable{
+public class Produto implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -28,28 +27,26 @@ public class Produto implements Serializable{
 	private Integer id;
 	private String nome;
 	private double preco;
-	
+
 	/*
-	 * Obrigado chat gpt por comentar por mim s2
-	 * Relação muitos para muitos entre Produto e Categoria, onde uma instância de Produto
-	 * pode ter várias instâncias de Categoria e vice-versa. A tabela intermediária PRODUTO_CATEGORIA 
-	 * armazena as chaves estrangeiras para Produto (produto_id) e Categoria (categoria_id).
-	 * A lista categorias armazena as instâncias de Categoria associadas a um Produto.
+	 * Obrigado chat gpt por comentar por mim s2 Relação muitos para muitos entre
+	 * Produto e Categoria, onde uma instância de Produto pode ter várias instâncias
+	 * de Categoria e vice-versa. A tabela intermediária PRODUTO_CATEGORIA armazena
+	 * as chaves estrangeiras para Produto (produto_id) e Categoria (categoria_id).
+	 * A lista categorias armazena as instâncias de Categoria associadas a um
+	 * Produto.
 	 */
-	@JsonBackReference
+	@JsonIgnore
 	@ManyToMany
-	@JoinTable(name = "PRODUTO_CATEGORIA",
-		joinColumns = @JoinColumn(name = "produto_id"),
-		inverseJoinColumns = @JoinColumn(name = "categoria_id")
-	)
+	@JoinTable(name = "PRODUTO_CATEGORIA", joinColumns = @JoinColumn(name = "produto_id"), inverseJoinColumns = @JoinColumn(name = "categoria_id"))
 	private List<Categoria> categorias = new ArrayList<>();
-	
+
 	@JsonIgnore
 	@OneToMany(mappedBy = "id.produto")
 	private Set<ItemPedido> itens = new HashSet<>();
-	
+
 	public Produto() {
-		
+
 	}
 
 	public Produto(Integer id, String nome, double preco) {
@@ -58,11 +55,11 @@ public class Produto implements Serializable{
 		this.nome = nome;
 		this.preco = preco;
 	}
-	
+
 	@JsonIgnore
-	public List<Pedido> getPedidos(){
+	public List<Pedido> getPedidos() {
 		List<Pedido> lista = new ArrayList<>();
-		for (ItemPedido x: itens) {
+		for (ItemPedido x : itens) {
 			lista.add(x.getPedido());
 		}
 		return lista;
@@ -100,7 +97,6 @@ public class Produto implements Serializable{
 		this.categorias = categorias;
 	}
 
-	
 	public Set<ItemPedido> getItens() {
 		return itens;
 	}
@@ -125,6 +121,5 @@ public class Produto implements Serializable{
 		Produto other = (Produto) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
+
 }
